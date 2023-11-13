@@ -1,0 +1,7 @@
+me\hexroy\hideandseek\commands\StartGameCommand.class
+me\hexroy\hideandseek\listeners\onPlayerJoinListener.class
+me\hexroy\hideandseek\listeners\onBlockBreakEventListener.class
+me\hexroy\hideandseek\commands\EndGameCommand.class
+me\hexroy\hideandseek\listeners\onPlayerRespawnListener.class
+me\hexroy\hideandseek\HideAndSeek.class
+me\hexroy\hideandseek\listeners\onPlayerDeathEventListener.class

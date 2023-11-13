@@ -1,0 +1,8 @@
+# Config for Hide and Seek plugin
+Game_Length: 300      # Length of the game in seconds
+Seeker_Delay: 60      # Amount of time the hiders can hide before the seeker is able to see/move
+Arena_Size: 100        # The radius of the arena
+in_game: false        # If players are in a game or not. True = In game, False = Not in game
+
+# Player data is used to store locations before players are teleported to begin games.
+player_data:

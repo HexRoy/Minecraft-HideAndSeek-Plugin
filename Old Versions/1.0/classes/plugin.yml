@@ -1,0 +1,18 @@
+name: HideAndSeek
+version: '1.0'
+main: me.hexroy.hideandseek.HideAndSeek
+api-version: '1.20'
+authors: [ HexRoy ]
+description: A simple hide and seek plugin using /sg startgame or /eg end game
+website: github.com/hexroy
+commands:
+  start_game:
+    description: Start a game of hide and seek
+    usage: /<command>
+    aliases:
+      - sg
+  end_game:
+    description: Ends the game of hide and seek
+    usage: /<command>
+    aliases:
+      - eg
