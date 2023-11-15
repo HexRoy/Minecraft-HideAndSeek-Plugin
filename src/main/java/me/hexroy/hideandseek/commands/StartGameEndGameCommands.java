@@ -8,8 +8,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.ChestedHorse;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -21,6 +23,7 @@ import java.awt.print.Book;
 import java.util.BitSet;
 import java.util.Random;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 public class StartGameEndGameCommands implements CommandExecutor {
     private Plugin plugin = HideAndSeek.getPlugin(HideAndSeek.class);
@@ -39,6 +42,8 @@ public class StartGameEndGameCommands implements CommandExecutor {
             else {
                 if (sender instanceof Player p) {
                     Bukkit.broadcastMessage("§4§n§l" + p.getName() + "§c has started a game of hide and seek");
+                    Bukkit.getLogger().info("[HideAndSeek] Disabling mob spawning during the game");
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule doMobSpawning false");
 
                     plugin.reloadConfig();
                     plugin.getConfig().set("in_game", true);
@@ -129,6 +134,9 @@ public class StartGameEndGameCommands implements CommandExecutor {
                 sender.sendMessage("There is currently no game of hide and seek. Please use /sg to begin");
             }
             else {
+                Bukkit.getLogger().info("[HideAndSeek] Enabling mob spawning during the game");
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gamerule doMobSpawning true");
+
                 for (Player player : Bukkit.getOnlinePlayers()) {
 
                     // Reset world border
@@ -227,12 +235,19 @@ public class StartGameEndGameCommands implements CommandExecutor {
                 }
                 if(time % plugin.getConfig().getInt("Timer_Denominator") == 0) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
-                        player.sendTitle(ChatColor.DARK_GREEN + "Time: " + time + " seconds", "", 5, 40, 5);
+                        player.sendTitle(ChatColor.DARK_GREEN + "Time: " + time + "s", "", 5, 40, 5);
+                        if (plugin.getConfig().getString("player_data." + player.getUniqueId() + ".role").equals("hider")){
+                            Firework firework = player.getWorld().spawn(player.getLocation(), Firework.class);
+                            FireworkMeta metaData = (FireworkMeta) firework.getFireworkMeta();
+                            metaData.addEffect(FireworkEffect.builder().withColor(Color.OLIVE).build());
+                            metaData.setPower(0);
+                            firework.setFireworkMeta(metaData);
+                        }
                     }
                 }
                 if(time < 10) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
-                        player.sendTitle(ChatColor.RED + "Time: " + time + " seconds", "", 5, 20, 5);
+                        player.sendTitle(ChatColor.RED + "Time: " + time + "s", "", 5, 20, 5);
                     }
                 }
                 time = time - 1;

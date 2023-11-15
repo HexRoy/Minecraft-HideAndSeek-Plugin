@@ -28,8 +28,6 @@ public final class HideAndSeek extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        System.out.println("Hide and seek enabled");
-
         // Config Default
         getConfig().options().copyDefaults();
         saveDefaultConfig();

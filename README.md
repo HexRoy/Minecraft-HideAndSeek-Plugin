@@ -15,13 +15,10 @@
 - N/A
 
 **Other**  
-- Turn on mob spawning or change to peaceful
 - Utilize time limit for hiding/ way for hiders to win.
   - After timer runs out end game, hiders win on screen. hunter loses on screen
   - Add sounds from hiders as game progresses (fireworks every 1-2 minutes?)
 - Need to figure out how to balance 'cheaty hiding spots' (deep caves, ocean floors, ect.)
-  - Use this to make sure players are not put inside blocks
-      //blockY = world.getHighestBlockYAt(loc) + 1
 - Player/ or last player? who dies is not teleported to saved location onPlayerRespawnListener??
 - Collapsing zone 
 - Make it more clear in what to do Hunter/Hider 
@@ -37,6 +34,11 @@
 - checkPosition method to check and adjust player position when using /sg:
   - Position lowered if flying in air until ground level
   - Position raised if in the ground until ground level
+
+### Changes
+- Disables mob spawns when /sg is used
+- Enables mob spawns after game is over
+- Fireworks are launched from all role:hiders based on the Timer_Denominator field
 
 -----------
 
