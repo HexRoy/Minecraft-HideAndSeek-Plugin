@@ -1,0 +1,9 @@
+# Config for Hide and Seek plugin
+Game_Length: 300      # Length of the game in seconds |Default 300: 5 minutes|
+Seeker_Delay: 600      # Amount of time the hiders can hide before the seeker is able to see/move in ticks (20 ticks = 1 second) |Default 600: 30|
+Timer_Denominator: 30  # How often the time remaining will appear on screen in seconds | Default: 30|
+Arena_Size: 100        # The radius of the arena in blocks |Default 100|
+in_game: false        # If players are in a game or not. True = In game, False = Not in game
+
+# Player data is used to store locations before players are teleported to begin games.
+player_data:

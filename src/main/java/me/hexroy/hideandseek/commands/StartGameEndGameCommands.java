@@ -85,6 +85,7 @@ public class StartGameEndGameCommands implements CommandExecutor {
                         if (current == random_int) {
 
                             player.sendMessage("§4 You have been chosen as the Hunter!");
+                            player.sendTitle(ChatColor.DARK_RED + "You are the Hunter!", "Get ready to hunt. The hiders are hiding", 5, plugin.getConfig().getInt("Seeker_Delay"), 5);
 
                             // Set the players role to hunter
                             plugin.reloadConfig();
@@ -106,6 +107,7 @@ public class StartGameEndGameCommands implements CommandExecutor {
                         // Setting Hiders Attributes
                         else {
                             player.sendMessage("§2 You have been chosen as a Hider!");
+                            player.sendTitle(ChatColor.DARK_RED + "You are a Hider!!", "Run, hide, and survive until the time runs out", 5, plugin.getConfig().getInt("Seeker_Delay"), 5);
 
                             // Set the players role to hider
                             plugin.reloadConfig();
@@ -236,6 +238,8 @@ public class StartGameEndGameCommands implements CommandExecutor {
                 if(time % plugin.getConfig().getInt("Timer_Denominator") == 0) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle(ChatColor.DARK_GREEN + "Time: " + time + "s", "", 5, 40, 5);
+
+                        // Fireworks for hiders
                         if (plugin.getConfig().getString("player_data." + player.getUniqueId() + ".role").equals("hider")){
                             Firework firework = player.getWorld().spawn(player.getLocation(), Firework.class);
                             FireworkMeta metaData = (FireworkMeta) firework.getFireworkMeta();
@@ -245,7 +249,7 @@ public class StartGameEndGameCommands implements CommandExecutor {
                         }
                     }
                 }
-                if(time < 10) {
+                if(time < 10 && time > 0) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle(ChatColor.RED + "Time: " + time + "s", "", 5, 20, 5);
                     }

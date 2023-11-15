@@ -12,18 +12,26 @@
           
 
 **Bugs**
-- N/A
-
-**Other**  
-- Utilize time limit for hiding/ way for hiders to win.
-  - After timer runs out end game, hiders win on screen. hunter loses on screen
-  - Add sounds from hiders as game progresses (fireworks every 1-2 minutes?)
-- Need to figure out how to balance 'cheaty hiding spots' (deep caves, ocean floors, ect.)
 - Player/ or last player? who dies is not teleported to saved location onPlayerRespawnListener??
-- Collapsing zone 
-- Make it more clear in what to do Hunter/Hider 
+
+
+**Other**
+- Need to figure out how to balance 'cheaty hiding spots' (deep caves, ocean floors, ect.)
+- Collapsing zone
 - /clear_roles
   - change all roles to none so you are able to delete blocks if needed
+- Give permission to use /spectate to all players
+
+
+-----------
+
+# V1.3
+
+-----------
+### Changes
+- Added titles for hunter/hider for instructions. Time is based on Seeker_Delay in config 
+
+
 
 -----------
 
@@ -39,6 +47,8 @@
 - Disables mob spawns when /sg is used
 - Enables mob spawns after game is over
 - Fireworks are launched from all role:hiders based on the Timer_Denominator field
+
+
 
 -----------
 
