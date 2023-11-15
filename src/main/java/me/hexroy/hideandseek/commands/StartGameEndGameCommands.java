@@ -3,6 +3,7 @@ package me.hexroy.hideandseek.commands;
 import me.hexroy.hideandseek.HideAndSeek;
 import org.bukkit.*;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,8 +14,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.jetbrains.annotations.NotNull;
 
 import javax.sound.midi.SoundbankResource;
+import java.awt.print.Book;
 import java.util.BitSet;
 import java.util.Random;
 import java.util.UUID;
@@ -41,6 +44,9 @@ public class StartGameEndGameCommands implements CommandExecutor {
                     plugin.getConfig().set("in_game", true);
                     plugin.saveConfig();
 
+                    // Position Check (Flying in air, or stuck in ground)
+                    Location teleport_location = checkPosition(p);
+
                     for (Player players : Bukkit.getOnlinePlayers()) {
                         Location player_location = players.getLocation();
                         plugin.reloadConfig();
@@ -48,7 +54,7 @@ public class StartGameEndGameCommands implements CommandExecutor {
                         plugin.saveConfig();
                         players.sendMessage("Your old location has been saved, teleporting to: " + ((Player) sender).getName());
                         players.setGameMode(GameMode.SURVIVAL);
-                        players.teleport(p);
+                        players.teleport(teleport_location);
                         players.setFoodLevel(200);
                     }
 
@@ -160,6 +166,46 @@ public class StartGameEndGameCommands implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    @NotNull
+    private static Location checkPosition(Player p) {
+        Location teleport_location = p.getLocation();
+        Location temp = p.getLocation();
+        Location temp2 = p.getLocation();
+        boolean air = false;
+        boolean ground= false;
+
+        // Checks for position in the air
+        temp.setY(temp.getY()-1);
+        if (temp.getBlock().getType().equals(Material.AIR)){
+            air = true;
+        }
+        while (air){
+            temp.setY(temp.getY()-1);
+            if (!temp.getBlock().getType().equals(Material.AIR)){
+                teleport_location = temp;
+                air = false;
+                return teleport_location;
+            }
+        }
+
+        // Checks to see if player is inside of blocks
+        temp = teleport_location;
+        temp2.setY(temp2.getY() + 1);
+        if ((!temp.getBlock().getType().equals(Material.AIR)) || (!temp2.getBlock().getType().equals(Material.AIR))){
+            ground = true;
+        }
+        while (ground){
+            temp = temp2;
+            temp2.setY(temp2.getY() + 1);
+            if ((temp.getBlock().getType().equals(Material.AIR)) || (temp2.getBlock().getType().equals(Material.AIR))){
+                teleport_location = temp;
+                ground = false;
+                return teleport_location;
+            }
+        }
+        return teleport_location;
     }
 
 

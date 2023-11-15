@@ -1,4 +1,4 @@
-## Upcoming changes
+## TODO
 - **Roles**
   - Implement new class with gui selection
   - /class command
@@ -33,7 +33,10 @@
 # V1.2
 
 -----------
-
+### Bug Fixes
+- checkPosition method to check and adjust player position when using /sg:
+  - Position lowered if flying in air until ground level
+  - Position raised if in the ground until ground level
 
 -----------
 
