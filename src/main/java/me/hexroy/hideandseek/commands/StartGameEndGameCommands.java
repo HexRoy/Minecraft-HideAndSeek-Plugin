@@ -29,6 +29,8 @@ public class StartGameEndGameCommands implements CommandExecutor {
     private Plugin plugin = HideAndSeek.getPlugin(HideAndSeek.class);
     int time;
     int taskID;
+    World world;
+    int radius;
 
 
     @Override
@@ -65,8 +67,8 @@ public class StartGameEndGameCommands implements CommandExecutor {
 
                     // Creating the arena
                     Location pos = p.getLocation();
-                    double radius = plugin.getConfig().getInt("Arena_Size");
-                    World world = p.getWorld();
+                    radius = plugin.getConfig().getInt("Arena_Size");
+                    world = p.getWorld();
                     world.getWorldBorder().setSize(radius);
                     world.getWorldBorder().setCenter(pos);
 
@@ -262,6 +264,12 @@ public class StartGameEndGameCommands implements CommandExecutor {
                 if(time < 10 && time > 0) {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         player.sendTitle(ChatColor.RED + "Time: " + time + "s", "", 5, 20, 5);
+                    }
+                }
+                if(plugin.getConfig().getBoolean("Collapsing_World_Border") && ((time < (plugin.getConfig().getInt("Game_Length") - plugin.getConfig().getInt("Collapsing_World_Border_Delay"))))){
+                    if(time % plugin.getConfig().getInt("Collapsing_World_Border_Denominator") == 0 ){
+                        radius = radius -plugin.getConfig().getInt("Collapsing_World_Border_Amount");
+                        world.getWorldBorder().setSize(radius);
                     }
                 }
                 time = time - 1;

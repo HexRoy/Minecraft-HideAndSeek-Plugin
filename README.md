@@ -17,7 +17,6 @@
 
 **Other**
 - Need to figure out how to balance 'cheaty hiding spots' (deep caves, ocean floors, ect.)
-- Collapsing world border
 - /clear_roles
   - change all roles to none so you are able to delete blocks if needed
 - Give permission to use /spectate to all players
@@ -29,7 +28,8 @@
 
 -----------
 ### Changes
-- Added titles for hunter/hider for instructions. Time is based on Seeker_Delay in config '
+- Added titles for hunter/hider for instructions. Time is based on Seeker_Delay in config
+- Implemented collapsing world border option to slowly push the hiders toward the middle of the map
 
 ### Role Changes
 - Hunters

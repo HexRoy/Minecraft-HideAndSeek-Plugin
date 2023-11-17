@@ -3,9 +3,13 @@ Game_Length: 300      # Length of the game in seconds |DefaultL: 300|
 Seeker_Delay: 600      # Amount of time the hiders can hide before the seeker is able to see/move in ticks (20 ticks = 1 second) |Default: 600|
 Timer_Denominator: 30  # How often the time remaining will appear on screen in seconds & How often hiders rockets go off | Default: 30|
 Arena_Size: 100        # The radius of the arena in blocks |Default: 100|
+#---------------------------------------------------------------------------------------------------------------------------------------------------------
+# ((Game_Length - Collapsing_World_Border_Delay) / Collapsing_World_Border_Denominator) * (Collapsing_World_Border_Amount) CAN NOT be more than Arena_Size
+# Failure to ensure the above will cause crashes
+#---------------------------------------------------------------------------------------------------------------------------------------------------------
 Collapsing_World_Border: true # If the world border shrinks over time |Default: true|
-Collapsing_World_Border_Amount: 3 # Number of blocks the world border (Arena_Size) is decrease by |Default: 5|
-Collapsing_World_Border_Denominator: 10 # How often the world border will decrease in size |Default: 10|
+Collapsing_World_Border_Amount: 1 # Number of blocks the world border (Arena_Size) is decrease by |Default: 1|
+Collapsing_World_Border_Denominator: 5 # How often the world border will decrease in size |Default: 5|
 Collapsing_World_Border_Delay: 60 # How long until the world border starts to shrink |Default: 60|
 in_game: false        # If players are in a game or not. True = In game, False = Not in game
 
