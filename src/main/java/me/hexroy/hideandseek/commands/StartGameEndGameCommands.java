@@ -95,9 +95,19 @@ public class StartGameEndGameCommands implements CommandExecutor {
                             player.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(100.0);
                             player.setHealth(100.0);
 
+                            // Giving Items and Armor
                             ItemStack netherite_sword = new ItemStack(Material.NETHERITE_SWORD);
                             player.getInventory().setItem(0, netherite_sword);
+                            ItemStack netherite_helm = new ItemStack(Material.NETHERITE_HELMET);
+                            player.getInventory().setHelmet(netherite_helm);
+                            ItemStack netherite_chest = new ItemStack(Material.NETHERITE_CHESTPLATE);
+                            player.getInventory().setChestplate(netherite_chest);
+                            ItemStack netherite_legs = new ItemStack(Material.NETHERITE_LEGGINGS);
+                            player.getInventory().setLeggings(netherite_legs);
+                            ItemStack netherite_boots = new ItemStack(Material.NETHERITE_BOOTS);
+                            player.getInventory().setBoots(netherite_boots);
 
+                            // Adding potion Effects for the game delay
                             player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, duration, 255));
                             player.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, duration, 250));
                             player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, duration, 255));
