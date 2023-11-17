@@ -20,7 +20,13 @@
 - /clear_roles
   - change all roles to none so you are able to delete blocks if needed
 - Give permission to use /spectate to all players
+- Add title for when the world border will collapse "World will shrink in 10s"
 
+-----------
+
+# V1.4
+
+-----------
 
 -----------
 
